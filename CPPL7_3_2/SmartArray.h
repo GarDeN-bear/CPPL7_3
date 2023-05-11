@@ -48,6 +48,10 @@ public:
 				}
 			}
 			else {
+				delete[] smartArray;
+				smartArray = nullptr;
+				size = smartArrayNew.get_size();
+				smartArray = new int[size] {0};
 				for (int i = 0; i < size; ++i) {
 					smartArray[i] = smartArrayNew.get_element(i);
 				}
@@ -55,13 +59,28 @@ public:
 		}
 		return *this;
 	}
+	smart_array(const smart_array& smartArrayNew) {
+		size = smartArrayNew.get_size();
+		smartArray = new int[size] {0};
+		if (&smartArrayNew != this)
+		{
+			for (int i = 0; i < smartArrayNew.get_size(); ++i) {
+				smartArray[i] = smartArrayNew.get_element(i);
+			}
+		}
+	}
+	smart_array(const smart_array&&) = delete;
+	smart_array& operator=(const smart_array&&) = delete;
 	~smart_array() {
 		delete[] smartArray;
 		smartArray = nullptr;
+
 	}
 private:
 	int size; // количесвто элементов 
 	int i_empty = 0; // текуща€ незаполненна€ €чейка массива
 	int* smartArray;
+	int* smartArray_new;
+	int flag = 0;
 };
 

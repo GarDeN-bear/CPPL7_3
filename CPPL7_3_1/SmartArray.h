@@ -19,7 +19,12 @@ public:
 		size = size_;
 		smartArray = new int[size] {0};
 	}
-	void add_element(int el) {
+	smart_array(const smart_array&) = delete;
+	smart_array(const smart_array&&) = delete;
+	smart_array& operator=(const smart_array&) = delete;
+	smart_array& operator=(const smart_array&&) = delete;
+
+		void add_element(int el) {
 		if (i_empty < size) {
 			smartArray[i_empty] = el;
 			++i_empty;
