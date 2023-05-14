@@ -28,7 +28,7 @@ public:
 			throw MyException("Количество элементов больше количества элементов, на которое выделена память!");
 		}
 	}
-	int get_element(int index) const{
+	int get_element(int index) const {
 		if (index >= 0 && index < size) {
 			return smartArray[index];
 		}
@@ -62,15 +62,10 @@ public:
 	smart_array(const smart_array& smartArrayNew) {
 		size = smartArrayNew.get_size();
 		smartArray = new int[size] {0};
-		if (&smartArrayNew != this)
-		{
-			for (int i = 0; i < smartArrayNew.get_size(); ++i) {
-				smartArray[i] = smartArrayNew.get_element(i);
-			}
+		for (int i = 0; i < smartArrayNew.get_size(); ++i) {
+			smartArray[i] = smartArrayNew.get_element(i);
 		}
 	}
-	smart_array(const smart_array&&) = delete;
-	smart_array& operator=(const smart_array&&) = delete;
 	~smart_array() {
 		delete[] smartArray;
 		smartArray = nullptr;
